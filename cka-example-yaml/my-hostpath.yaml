@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-hostpath-pod
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh","-c","sleep 3600"]
+    volumeMounts:
+    - name: data
+      mountPath: /data/tmp
+  volumes:
+  - name: data
+    hostPath:
+      path: /tmp
+      type: Directory   # 说明挂载路径的是目录（Directory）还是文件（文件）
+    

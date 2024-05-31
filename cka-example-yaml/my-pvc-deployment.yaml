@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-pvc-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pvc-busybox-pod
+  template:
+    metadata:
+      labels:
+        app: pvc-busybox-pod
+    spec:
+      containers:
+      - name: busybox-c
+        image: busybox
+        command: ["/bin/sh","-c","sleep 3600"]
+        volumeMounts:
+        - name: pvc-shared-data
+          mountPath: /tmp/data
+      volumes:
+        - name: pvc-shared-data
+          persistentVolumeClaim:
+            claimName: my-pvc-100m  # 部署好的PVC

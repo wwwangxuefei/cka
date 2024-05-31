@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: my-sts-redis
+spec:
+  serviceName: my-sts-redis-svc  # 提前指定了Service名称
+  volumeClaimTemplates:  # 定义PVC模板
+  - metadata:
+      name: my-sts-redis-pvc-100m
+    spec:
+      storageClassName: nfs-client
+      accessModes:
+        - ReadWriteMany
+      resources:
+        requests:
+          storage: 100Mi
+  replicas: 2  # 两个Pod副本
+  selector:
+    matchLabels:
+      app: my-sts-redis
+  template:    # Pod模板
+    metadata:
+      labels:
+        app: my-sts-redis
+    spec:
+      containers:
+      - image: redis:5-alpine   # redis镜像
+        name: redis
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+        - name: my-sts-redis-pvc-100m  # PVC模板中的名称
+          mountPath: /tmp/data

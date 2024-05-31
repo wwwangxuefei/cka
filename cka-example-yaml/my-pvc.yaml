@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc-100m #自定义pvc名字
+spec:
+  accessModes:
+    - ReadWriteMany  # 访问模式
+  resources:
+    requests:
+      storage: 100M #定义要申请的空间大小

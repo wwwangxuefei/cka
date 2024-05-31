@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Namespace    # 创建一个命名空间
+metadata:
+  name: project-a 
+---
+apiVersion: v1
+kind: ResourceQuota    # 创建一个命名空间的资源配额
+metadata:
+  name: project-a-rq
+  namespace: project-a
+spec:
+  hard:
+    pods: 10
+    configmaps: 50
+    secrets: 50
+    services: 50
+    persistentvolumeclaims: 50
+    count/jobs.batch: 10
+    count/cronjobs.batch: 10
+    count/deployments.apps: 10
+    requests.cpu: 5
+    requests.memory: 5Gi
+    limits.cpu: 10
+    limits.memory: 10Gi

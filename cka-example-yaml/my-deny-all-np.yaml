@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-ingress
+  namespace: ns1
+spec:
+  podSelector: {}    # 命名空间下所有Pod
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector: {} # 未配置，匹配所有pod
