@@ -3,12 +3,9 @@ kind: Pod
 metadata:
   name: test
 spec:
-  nodeSelector:
-    node: work2
   containers:
     - name: nginx
       image: nginx
     - name: busybox
       image: busybox
-      command: ["/bin/sh"]
-      args: ["-c", "sleep infinity"]
+      command: ["/bin/sh","-c","sleep 3600"]
