@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-rollout
+  annotations:
+    kubernetes.io/change-cause: v2, change port  # 通过注解增加说明
+spec:
+  replicas: 3  # 副本数3个
+  selector:
+    matchLabels:
+      app: nginx-deployment
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment
+    spec:
+      containers:
+      - name: my-nginx-co
+        image: nginx  # nginx镜像
+        ports:
+        - containerPort: 80  # V1
