@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod-volume
+spec:
+  containers:
+  - name: busybox-c
+    image: busybox
+    command: ["/bin/sleep", "3600"] # 执行程序休眠100秒
+    volumeMounts:
+    - name: my-configmap-vol   # 要挂载到本地目录的 Volume 的名称
+      mountPath: /data/config  # 本地目录地址
+    - name: my-secret-vol      # 要挂载到本地目录的 Volume 的名称
+      mountPath: /data/secret  # 本地目录地址
+  volumes:
+  - name: my-configmap-vol  # 定义一个 Volume
+    configMap:
+      name: my-configmap  # 部署的 ConfigMap 名称
+  - name: my-secret-vol  # 定义一个 Volume
+    secret:
+      secretName: my-secret  # 部署的 Secret 名称

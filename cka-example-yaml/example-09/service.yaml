@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+  namespace: default
+spec:
+  selector:    # 通过selector确定代理哪些pod
+    app: my-deployment  # 通过命令创建的Deployment中的Pod标签就是Deployment资源名
+  type: ClusterIP
+  ports: # 端口信息
+  - name: 80-80
+    protocol: TCP  
+    port: 80         # service自身端口
+    targetPort: 80   # pod容器端口
+

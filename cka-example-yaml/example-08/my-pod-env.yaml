@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod-env
+spec:
+  containers:
+  - name: busybox-c
+    image: busybox
+    command: ["/bin/sleep", "3600"]
+    env:
+    - name: COUNT   # 最终 Pod 里的环境变量名称
+      valueFrom:
+        configMapKeyRef:
+          name: my-configmap  # 部署的 ConfigMap 名称
+          key: count   # ConfigMap 中定义的参数名
+    - name: PATH    # 最终 Pod 里的环境变量名称
+      valueFrom:
+        configMapKeyRef:
+          name: my-configmap  # 部署的 ConfigMap 名称
+          key: path   # ConfigMap 中定义的参数名
+    - name: USERNAME   # 最终 Pod 里的环境变量名称
+      valueFrom:
+        secretKeyRef:
+          name: my-secret  # 部署的 Secret 名称
+          key: username   # Secret 中定义的参数名
+    - name: PASSWORD    # 最终 Pod 里的环境变量名称
+      valueFrom:
+        secretKeyRef:
+          name: my-secret  # 部署的 Secret 名称
+          key: password   # Secret 中定义的参数名
