@@ -13,7 +13,7 @@ spec:
         app: nginx-deployment
     spec:
       containers:
-      - name: my-nginx-co
+      - name: nginx-co
         image: nginx  # nginx镜像
         ports:
         - containerPort: 80  # 暴露端口号
