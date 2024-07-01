@@ -23,6 +23,8 @@ spec:
         - name: nfs-client-provisioner
           # image: registry.k8s.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
           image: chainguard/nfs-subdir-external-provisioner:latest-dev
+          # image: quay.io/external_storage/nfs-client-provisioner:latest
+          # image: quay-mirror.qiniu.com/external_storage/nfs-client-provisioner:latest 
           volumeMounts:
             - name: nfs-client-root
               mountPath: /persistentvolumes

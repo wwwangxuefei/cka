@@ -22,5 +22,5 @@ spec:
       volumes:
       - name: nfs-shared-data
         nfs:
-          server: k8s-work2   # NFS服务器IP、域名或者主机名
+          server: k8s-worker2   # NFS服务器IP、域名或者主机名
           path: /nfs/k8s/shared   # 共享目录

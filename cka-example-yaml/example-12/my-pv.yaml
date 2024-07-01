@@ -7,8 +7,8 @@ spec:
     storage: 100M # 定义这个pv的限制存储大小
   accessModes:
     - ReadWriteMany # 访问模式
-  persistentVolumeReclaimPolicy: Delete  # 默认Retain
+  persistentVolumeReclaimPolicy: Retain  # 默认Retain
   # storageClassName: nfs  # 存储类类目，可以不用
   nfs:
-    server: k8s-work2 #指定nfs主机的ip地址或者主机名
+    server: k8s-worker2 #指定nfs主机的ip地址或者主机名
     path: /nfs/k8s/shared #绑定主机的的路径

@@ -4,10 +4,10 @@ metadata:
   name: my-ingress
 spec:
   ingressClassName: nginx
-#  tls:
-#  - hosts:
-#    - myapp.address.com
-#    secretName: myapp-address-com-secret
+  tls:
+  - hosts:
+    - myapp.address.com
+    secretName: myapp-address-com-secret
   rules:
   - host: myapp.address.com
     http:
